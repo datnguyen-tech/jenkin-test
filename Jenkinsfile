@@ -6,10 +6,22 @@ pipeline {
     //         git 'https://github.com/akiramix1102/jenkin-test.git'
     //     }
     // }	  
-    stage("test"){
-      steps{
-        echo "hello"
-      }
+   stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
   }
 }
