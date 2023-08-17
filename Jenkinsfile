@@ -16,8 +16,8 @@ pipeline {
     stage("build") {
             
         steps {
-          
-      sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} . "
+          echo "docker -v"
+      sh "docker build -t ${DOCKER_IMAGE} . "
 
         // withDockerRegistry(credentialsId: 'docker-hub	', url: 'https://index.docker.io/v1/') {
             
