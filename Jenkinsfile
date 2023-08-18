@@ -16,7 +16,7 @@ pipeline {
     stage("build") {
             
         steps {
-          echo "docker -v"
+          sh "docker -v"
       sh "docker build -t ${DOCKER_IMAGE} . "
 
         // withDockerRegistry(credentialsId: 'docker-hub	', url: 'https://index.docker.io/v1/') {
