@@ -16,24 +16,23 @@ pipeline {
     stage("build") {
             
         steps {
-          sh "docker -v"
-      sh "docker build -t ${DOCKER_IMAGE} . "
+    echo "Building...."
 
-        // withDockerRegistry(credentialsId: 'docker-hub	', url: 'https://index.docker.io/v1/') {
+        withDockerRegistry(credentialsId: 'docker-hub	', url: 'https://index.docker.io/v1/') {
             
-        //     sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} . "
-        //     sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
-        //     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
-        //     sh "docker push ${DOCKER_IMAGE}:latest"
+            sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} . "
+            sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
+            sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+            sh "docker push ${DOCKER_IMAGE}:latest"
 
-        // }    
+        }    
 
-        //     //clean to save disk
-        //     sh "docker image rm -f ${DOCKER_IMAGE}:${DOCKER_TAG}"
-        //     sh "docker image rm -f ${DOCKER_IMAGE}:latest"
-        //     sh "docker image prune -f"
+            //clean to save disk
+            sh "docker image rm -f ${DOCKER_IMAGE}:${DOCKER_TAG}"
+            sh "docker image rm -f ${DOCKER_IMAGE}:latest"
+            sh "docker image prune -f"
 
-        // }
+        }
 
     }
 	  
